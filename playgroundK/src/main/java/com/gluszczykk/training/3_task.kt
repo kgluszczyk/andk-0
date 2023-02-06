@@ -19,9 +19,15 @@ fun main() {
 
     //1
     fun isTeen(age: Int) = age in teenRange
-    isTeen(30).also {
-        println(it)
+
+    println(isTeen(16))
+    //lub
+    isTeen(30).also { teensAge ->
+        println(teensAge)
     }
+    //ekwiwalent
+    val isTeen30 = isTeen(30)
+    println(isTeen30)
 
     isTeen(30).run {
         println(this)
@@ -43,8 +49,8 @@ fun main() {
     }
 
     //lub
-    processIntArray(leapYears) {
-        it.toString().sumOf { it.toString().toInt() }
+    processIntArray(leapYears) { year ->
+        year.toString().sumOf { char -> char.toString().toInt() }
     }
 
 }
