@@ -16,6 +16,9 @@ import javax.management.Query.gt
 
  **/
 
+internal val teenRange = 13..19
+internal val adultRange = 20 .. 59
+
 fun main(){
 
     //1
@@ -26,8 +29,6 @@ fun main(){
     }
 
     //2
-    val teenRange = 13..19
-    val adultRange = 20 .. 59
 
     val type = when(age){
         in teenRange -> "Nastolatek"
