@@ -1,15 +1,15 @@
 package com.gluszczykk.training
 
 /**
-1. Napisz wyrażenie if/else, które wypisze "No to się wysypia" jeśli nie ma dzieci, i "Oj, będzie cieżkow" jeśli ma
+1. Napisz funckję sprawdzajaca czy dany dany wiek odpowiada nastolatkowi
 
-2. Napisz wyrażenie when, które przypisze do zmiennej "Nastolatek" jesli wiek jest pomiedzy 13-19, 'dorosły' 20-59 i "Senior" jeśli jest powyżej 60
+2. Napisz funkcję, która wypisze "Cześć, [imię]" dla podanego imienia
 
-3. Napisz pętle for, która wypisze wszystkie lata przestepne pomiedzy 2010 a 2020
+3. Napisz funkcję wyższego rzędu, która przyjmuje jako argument:
+    * tablicę lat,
+    * funkcje dodającą 1 rok lub funkcję sumującą cyfry z danego roku, której wynika aplikacji zastąpi każdy element do którego została zaaplikowana
 
-4. Napisz pętle while, która wpisze do osobnej tablicy 5 pierwszych lat przestepnych
-
-5. Napisz pętle do-while, która wypisze wszystkie lata z talbicy z pkt.4 do 2008 włącznie
+ Wykonaj fukcję i wypisz tablicę na standardowe wyjśćie.
 
 
  **/
