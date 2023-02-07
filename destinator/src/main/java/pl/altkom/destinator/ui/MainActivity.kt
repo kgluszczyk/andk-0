@@ -22,7 +22,13 @@ class MainActivity : AppCompatActivity() {
         //Data binding
         binding.listContent = StaticDataSource.destinations
             .filter { it.id > 0 }
-            .map {
+            .map {    StaticDataSource.destinations
+                .filter { it.id > 0 }
+                .map {
+                    it.description
+                }.forEach {
+                    println(it)
+                }
                 it.description
             }.joinToString { it }
 
