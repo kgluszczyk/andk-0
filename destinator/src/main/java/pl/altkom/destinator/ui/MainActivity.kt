@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         //View binding
       //  binding.content.text = "3"
 
+        //Recycler View
+
+        binding.recyclerView.adapter = DestinationAdapter(StaticDataSource.destinations)
+
         //Data binding
         binding.listContent = StaticDataSource.destinations
             .filter { it.id > 0 }
