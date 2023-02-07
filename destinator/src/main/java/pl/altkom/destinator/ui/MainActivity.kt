@@ -20,7 +20,12 @@ class MainActivity : AppCompatActivity() {
       //  binding.content.text = "3"
 
         //Data binding
-        binding.listContent = StaticDataSource.destinations.toString()
+        binding.listContent = StaticDataSource.destinations
+            .filter { it.id > 0 }
+            .map {
+                it.description
+            }.joinToString { it }
+
         Toast.makeText(this, title.text, Toast.LENGTH_LONG).show()
         title.setOnClickListener {
             Toast.makeText(it.context, "${title.text.length}", Toast.LENGTH_LONG).show()
