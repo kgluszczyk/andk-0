@@ -1,19 +1,5 @@
 package com.gluszczykk.training
 
-
-class KlasaPochodna(val clickAction: ClickAction) : ClickAction by clickAction
-
-fun interface ClickAction {
-    fun onClick()
-}
-
-val nieWymagajacaPrzetworzenia: String = "Hello, world!"
-
-val wymagajacaPrzetworzenia: String by lazy {
-    println("Rozpoczyanm obliczenia")
-    "Hello, world!"
-}
-
 fun main() {
     //Any -> Number -> Double ->Nothing
     var numery = Array<Number>(3) { 1 }
