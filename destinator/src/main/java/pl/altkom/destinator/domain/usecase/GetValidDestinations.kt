@@ -1,8 +1,12 @@
 package pl.altkom.destinator.domain.usecase
 
-import pl.altkom.destinator.data.DestinationsStaticDataSource
+import pl.altkom.destinator.domain.DestinationsRepository
 
-class GetValidDestinations {
+class GetValidDestinations(private val destinationsRepository: DestinationsRepository) {
 
-    operator fun invoke() = DestinationsStaticDataSource.destinations
+    operator fun invoke() = destinationsRepository
+        .getDestinations()
+        .filter {
+            it.id > 0
+        }
 }

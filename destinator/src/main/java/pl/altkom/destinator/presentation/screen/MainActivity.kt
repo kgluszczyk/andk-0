@@ -1,23 +1,27 @@
-package pl.altkom.destinator.presentation
+package pl.altkom.destinator.presentation.screen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import androidx.appcompat.app.AppCompatActivity
 import pl.altkom.destinator.data.DestinationsStaticDataSource
+import pl.altkom.destinator.data.datasource.DestinationsStaticDataSourceImpl
+import pl.altkom.destinator.data.repository.DestinationsRepositoryImpl
 import pl.altkom.destinator.databinding.ActivityMainBinding
+import pl.altkom.destinator.domain.DestinationsRepository
 import pl.altkom.destinator.domain.usecase.GetValidDestinations
+import pl.altkom.destinator.presentation.DestinationAdapter
+import pl.altkom.destinator.presentation.viewmodel.DestinationsViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: DestinationsViewModel = DestinationsViewModel(GetValidDestinations())
+    private val viewModel: DestinationsViewModel =
+        DestinationsViewModel(
+            GetValidDestinations(
+                DestinationsRepositoryImpl(
+                    DestinationsStaticDataSourceImpl()
+                )
+            )
+        )
     private val destinationsAdapter = DestinationAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,8 +1,8 @@
-package pl.altkom.destinator.data
+package pl.altkom.destinator.domain
 
 import pl.altkom.destinator.domain.entity.Destination
 
-interface DestinationsStaticDataSource {
+interface DestinationsRepository {
 
     fun getDestinations(): List<Destination>
 }
