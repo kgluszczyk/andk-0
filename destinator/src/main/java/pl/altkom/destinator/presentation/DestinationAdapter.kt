@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.altkom.destinator.R
 import pl.altkom.destinator.domain.entity.Destination
 
-class DestinationAdapter(private val destinations: List<Destination>) :
+class DestinationAdapter(private var destinations: List<Destination> = emptyList()) :
     RecyclerView.Adapter<DestinationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DestinationViewHolder {
         val view =
@@ -20,6 +20,11 @@ class DestinationAdapter(private val destinations: List<Destination>) :
 
     override fun onBindViewHolder(holder: DestinationViewHolder, position: Int) {
         holder.bind(destinations[position])
+    }
+
+    fun setData(newList: List<Destination>){
+        destinations = newList
+        notifyDataSetChanged()
     }
 
 }
