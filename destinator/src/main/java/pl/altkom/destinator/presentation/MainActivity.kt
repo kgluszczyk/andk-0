@@ -13,19 +13,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pl.altkom.destinator.data.DestinationsStaticDataSource
 import pl.altkom.destinator.databinding.ActivityMainBinding
+import pl.altkom.destinator.domain.usecase.GetValidDestinations
 
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: DestinationsViewModel = DestinationsViewModel(GetValidDestinations())
+    private val destinationsAdapter = DestinationAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //Data binding
-        binding.listContent = DestinationsStaticDataSource.destinations
-            .filter { it.id > 0 }
-            .map {
-                it.description
-            }.joinToString { it }
+        binding.listContent = viewModel.getDestinationsOverview()
 
         //View binding
         binding.labelka.setOnClickListener {
@@ -33,20 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Recycler View
-        val destinationAdapter = DestinationAdapter()
-        binding.recyclerView.adapter = destinationAdapter
-        Log.d("THREADING", Thread.currentThread().name)
-        lifecycleScope.launch(Dispatchers.Default) {
-            repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                repeat(10) {
-                    Log.d("THREADING", "Thread: ${Thread.currentThread().name}")
-                    withContext(Dispatchers.Main) {
-                        Log.d("THREADING", "runOnUiThread: ${Thread.currentThread().name}")
-                        destinationAdapter.submitList(DestinationsStaticDataSource.destinations.shuffled())
-                    }
-                    delay(1000)
-                }
-            }
-        }
+        binding.recyclerView.adapter = destinationsAdapter
+        destinationsAdapter.submitList(viewModel.getDestinations())
     }
 }
