@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Destinator</string>
+    <string name="main_screen_header">Destinations list</string>
 </resources>

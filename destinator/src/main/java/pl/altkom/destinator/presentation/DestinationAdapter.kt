@@ -1,4 +1,4 @@
-package pl.altkom.destinator.ui
+package pl.altkom.destinator.presentation
 
 import android.view.LayoutInflater
 import android.view.View
