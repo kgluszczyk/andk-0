@@ -4,8 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import pl.altkom.destinator.data.DestinationsStaticDataSource
 import pl.altkom.destinator.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,17 +35,15 @@ class MainActivity : AppCompatActivity() {
         val destinationAdapter = DestinationAdapter()
         binding.recyclerView.adapter = destinationAdapter
         Log.d("THREADING", Thread.currentThread().name)
-        val runnable = Runnable {
+        lifecycleScope.launch(Dispatchers.Default) {
             repeat(10) {
                 Log.d("THREADING", "Thread: ${Thread.currentThread().name}")
-                runOnUiThread {
+                withContext(Dispatchers.Main) {
                     Log.d("THREADING", "runOnUiThread: ${Thread.currentThread().name}")
                     destinationAdapter.setData(DestinationsStaticDataSource.destinations.shuffled())
                 }
-                Thread.sleep(1000L)
+               delay(1000)
             }
         }
-        val task = Thread(runnable)
-        task.start()
     }
 }
