@@ -1,6 +1,7 @@
 package pl.altkom.destinator.presentation.screen
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         //View binding
         binding.labelka.setOnClickListener {
+            viewModel.userChoice++
             Toast.makeText(it.context, "${binding.labelka.text.length}", Toast.LENGTH_LONG).show()
         }
 
@@ -48,7 +50,8 @@ class MainActivity : AppCompatActivity() {
                     when (screenState) {
                         is ScreenState.Content -> {
                             destinationsAdapter.submitList(screenState.destinations)
-                            binding.listContent = screenState.overview
+                            binding.listContent =
+                                "${screenState.userChoice}: ${screenState.overview}"
                         }
                         is ScreenState.Error -> Toast.makeText(
                             this@MainActivity,
