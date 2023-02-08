@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import pl.altkom.destinator.data.DestinationsStaticDataSource
 import pl.altkom.destinator.databinding.ActivityMainBinding
-import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d("THREADING", "Thread: ${Thread.currentThread().name}")
                     withContext(Dispatchers.Main) {
                         Log.d("THREADING", "runOnUiThread: ${Thread.currentThread().name}")
-                        destinationAdapter.setData(DestinationsStaticDataSource.destinations.shuffled())
+                        destinationAdapter.submitList(DestinationsStaticDataSource.destinations.shuffled())
                     }
                     delay(1000)
                 }
