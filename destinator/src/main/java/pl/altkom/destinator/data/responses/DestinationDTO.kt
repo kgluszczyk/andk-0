@@ -4,7 +4,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import pl.altkom.destinator.domain.entity.Destination
 
-@JsonClass(generateAdapter = true)
 data class DestinationDTO(
     val id: Long,
     val name: String,
