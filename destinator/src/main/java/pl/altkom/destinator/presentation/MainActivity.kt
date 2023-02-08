@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,13 +38,15 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = destinationAdapter
         Log.d("THREADING", Thread.currentThread().name)
         lifecycleScope.launch(Dispatchers.Default) {
-            repeat(10) {
-                Log.d("THREADING", "Thread: ${Thread.currentThread().name}")
-                withContext(Dispatchers.Main) {
-                    Log.d("THREADING", "runOnUiThread: ${Thread.currentThread().name}")
-                    destinationAdapter.setData(DestinationsStaticDataSource.destinations.shuffled())
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                repeat(10) {
+                    Log.d("THREADING", "Thread: ${Thread.currentThread().name}")
+                    withContext(Dispatchers.Main) {
+                        Log.d("THREADING", "runOnUiThread: ${Thread.currentThread().name}")
+                        destinationAdapter.setData(DestinationsStaticDataSource.destinations.shuffled())
+                    }
+                    delay(1000)
                 }
-               delay(1000)
             }
         }
     }
