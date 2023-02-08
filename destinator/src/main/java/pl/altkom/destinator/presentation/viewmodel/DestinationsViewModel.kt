@@ -23,7 +23,7 @@ class DestinationsViewModel(val getValidDestinations: GetValidDestinations) {
                     destinations = destinations,
                     overview = destinations.map { destination ->
                         destination.description
-                    }.joinToString { overview -> overview },
+                    }.joinToString { overview -> overview.take(5) },
                     userChoice = userChoice
                 )
             }

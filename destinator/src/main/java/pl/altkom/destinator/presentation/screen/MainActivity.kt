@@ -1,13 +1,13 @@
 package pl.altkom.destinator.presentation.screen
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import pl.altkom.destinator.data.datasource.DestinationsStaticDataSourceImpl
+import pl.altkom.destinator.data.datasource.DestinationsDataSourceImpl
+import pl.altkom.destinator.data.datasource.DestinationsNetworkServiceDataSource
 import pl.altkom.destinator.data.repository.DestinationsRepositoryImpl
 import pl.altkom.destinator.databinding.ActivityMainBinding
 import pl.altkom.destinator.domain.usecase.GetValidDestinations
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         DestinationsViewModel(
             GetValidDestinations(
                 DestinationsRepositoryImpl(
-                    DestinationsStaticDataSourceImpl()
+                    DestinationsNetworkServiceDataSource()
                 )
             )
         )
