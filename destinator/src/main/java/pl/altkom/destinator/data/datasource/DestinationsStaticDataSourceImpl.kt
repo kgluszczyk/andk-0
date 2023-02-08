@@ -1,9 +1,9 @@
 package pl.altkom.destinator.data.datasource
 
-import pl.altkom.destinator.data.DestinationsStaticDataSource
+import pl.altkom.destinator.data.repository.DestinationsStaticDataSource
 import pl.altkom.destinator.domain.entity.Destination
 
-class DestinationsStaticDataSourceImpl : DestinationsStaticDataSource{
+class DestinationsStaticDataSourceImpl : DestinationsStaticDataSource {
 
     override fun getDestinations() = listOf(
         Destination(id = 0, description = "Bardzo fajne", name = "Tajlandia"),

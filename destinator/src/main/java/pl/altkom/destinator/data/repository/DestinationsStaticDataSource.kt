@@ -1,4 +1,4 @@
-package pl.altkom.destinator.data
+package pl.altkom.destinator.data.repository
 
 import pl.altkom.destinator.domain.entity.Destination
 
